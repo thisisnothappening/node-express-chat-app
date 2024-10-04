@@ -2,7 +2,7 @@ const User = require('../model/User');
 
 const getUsers = async (req, res) => {
 	try {
-		const users = await User.find();
+		const users = await User.find().select("-password");
 		res.status(200).send({ users });
 	} catch (err) {
 		console.error(err);

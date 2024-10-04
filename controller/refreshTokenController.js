@@ -15,6 +15,7 @@ const refreshToken = async (req, res) => {
 		if (!user) {
 			throw new Error("User not found");
 		}
+		const id = user.id;
 		const email = user.email;
 		const username = user.username;
 
@@ -30,7 +31,7 @@ const refreshToken = async (req, res) => {
 					process.env.ACCESS_TOKEN_SECRET,
 					{ expiresIn: "30m" }
 				);
-				res.json({ accessToken, email, username });
+				res.json({ accessToken, id, email, username });
 			}
 		);
 	} catch (err) {
